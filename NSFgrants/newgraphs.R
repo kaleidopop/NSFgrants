@@ -77,7 +77,10 @@ ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) +
 
 ## Months do change
 ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1) + facet_wrap(~action_type) +geom_vline(aes(xintercept=mean(logcost), na.rm=T), color="red", linetype="dashed", size=1) 
-
+### Density grid - new thingy 
+data(schoolsall, package="lattice")
+qplot(logcost, data=schoolsall, geom=c("density"),
+      facets=mondec~., fill=mondec)
 
 ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() 
 ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() + facet_wrap(~action_type)

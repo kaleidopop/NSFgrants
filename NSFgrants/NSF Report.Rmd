@@ -1,0 +1,21 @@
+---
+title: "NSF Report"
+author: "Deepa, Ilya, Kaytlin, Sahar"
+date: "December 20, 2015"
+output: pdf_document
+---
+
+So 
+```{r, echo=FALSE}
+load("NSF.RData")
+load("Subsets.R")
+load("newgraphs.R")
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
