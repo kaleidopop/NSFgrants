@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1450563008759.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D0CFD659",
+    "lastKnownWriteTime" : 4345769000,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "dj10b5hl7x",
+        "caption" : "schoolsall",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=schoolsall&cache_key=dj10b5hl7x",
+        "displayedObservations" : 410292,
+        "environment" : "",
+        "object" : "schoolsall",
+        "totalObservations" : 410292,
+        "variables" : 17
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

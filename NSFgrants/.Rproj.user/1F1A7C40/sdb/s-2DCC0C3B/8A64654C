@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1450563357091.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8A64654C",
+    "lastKnownWriteTime" : 8746672650304094208,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "f217in00sc",
+        "caption" : "meancolbyyear",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=meancolbyyear&cache_key=f217in00sc",
+        "displayedObservations" : 105631,
+        "environment" : "",
+        "object" : "meancolbyyear",
+        "totalObservations" : 105631,
+        "variables" : 3
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
