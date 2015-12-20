@@ -1,3 +1,17 @@
+states <- c(unique(as.character(schoolsall$principal_place_state_code, incomparables = FALSE)))
+sort(states, decreasing = FALSE)
+
+cfda <- c(unique(as.character(schoolsall$cfda_program_title, incomparables = FALSE)))
+sort(cfda, decreasing = FALSE)
+
+action <- c(unique(as.character(schoolsall$action_type, incomparables = FALSE)))
+sort(action, decreasing = FALSE)
+
+years <- c(unique(as.character(schoolsall$fiscal_year, incomparables = FALSE)))
+years <- sort(years, decreasing = FALSE)
+
+
+
 
 for (i in 1:length(states)){
   newpew <- schoolsall[which(schoolsall$principal_place_state_code == states[i]), ]
@@ -19,9 +33,6 @@ cf_DFinf2NA <- function(x)
 } 
 statesbycfda<- cf_DFinf2NA(statesbycfda)
 statesbyaction<- cf_DFinf2NA(statesbyaction)
-
-
-
 
 
 for (i in 1:length(states)){
