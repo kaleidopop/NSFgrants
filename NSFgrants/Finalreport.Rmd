@@ -1,10 +1,13 @@
 ---
-title: "NSF Report"
+title: "Funding Innovation: An Analysis of Federal Research and Development Grants in the United States 1999-2016"
 author: "Sahar Alhassan, Kaytlin Lynes, Deepa Mehta, Ilya Perepelitsa"
-date: "December 20, 2015"
+date: "December 21, 2015"
 output: pdf_document
 ---
 \section{Introduction}
+
+The National Science Foundation is the number one grant-making agency.
+
 \section{Methodology}
 
 The dataset used in this study is comprised of queries obtained from https://www.usaspending.gov 
