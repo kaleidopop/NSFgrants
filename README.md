@@ -1,5 +1,8 @@
 # NSFgrants
-Sample of NSF grant database
+Population of NSF grants
+
+To get graphical output - load the schoolsall data.frame from the file NSF.RData and execute the code in subsets.R first. All the graphs are listed in the newgraphs.R file and are grouped in sections
+
 
 The dataset used in this study is comprised of queries obtained from https://www.usaspending.gov 
 Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. 
