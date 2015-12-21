@@ -1,6 +1,6 @@
 ---
 title: "Innovation Landscapes:  An Analysis of National Science Foundation Research Grants from 1999-2016"
-author: "Sahar Alhassan, Kaitlyn Lynes, Deepa Mehta, Ilya Perepelitsa"
+author: "Sahar Alhassan, Kaitlin Lynes, Deepa Mehta, Ilya Perepelitsa"
 date: "December 21, 2015"
 output: pdf_document
 ---
@@ -22,8 +22,7 @@ As a starting point, our dataset is comprised of queries obtained from the publi
 * fiscal_year - Budget year
 * starting_date - Start date of awarded research project 
 * ending_date - End date of awarded research project
-* obligation_action_date - Grant Decision  
-This variable tells us the date that the award was obligated. 
+* obligation_action_date - Start date of grant award obligation 
 
 #####Grant Amounts and Grant Type
 * fed_funding_amount - Dollar amount of grant 
@@ -68,7 +67,7 @@ The resulting dataset consists of 410,292 observations of 17 variables. Various 
 
 \section{General observations}
 
-About this plot: \vspace{20 mm}
+Initially, we mapped the total number of awarded grants (410,292) from 1999 to 2016 based on the _Obligation Action Date_ and _Awarded Grant Dollars per month_ divided by _Action Type_. Here, we observed a concentration of continuing grants using a log transformation to identify any relationships between the type of grant over this 17 year period. We also observed a steady number of all grants to be somewhere between $0 to $500,000, with some continuing awards reaching $1,000,000 and some new awards reaching $1,500,000. We also observed revised grants in the negatives. We attribute these negative numbers of nominal grant dollars (mostly in revision grants) to the fact that these grants often seek to make up for cost overruns. \vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 load("NSF.RData")
@@ -88,13 +87,14 @@ library(ggplot2)
 ggplot(schoolsall,aes(x=obligation_action_date, y = logcost)) + geom_point(aes(color= action_type ))  + ggtitle("log-transformed Grant Dollars per month of research, historical 1999-2016")+ labs(x="Obligation action date",y="log(Grant Dollars per month of research)") 
 
 ```
-About this plot\vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall,aes(x=obligation_action_date, y = fed_funding_amount/100000)) + geom_point(aes(color= action_type )) + ggtitle("Nominal Grant Dollars per month of research / $100K, historical 1999-2016")+ labs(x="Obligation action date",y="Dollars per month of research / $100K") 
 
 ```
-About this Plot\vspace{20 mm}
+We then categorically analyzed the difference between continuing, new, and revised grants over the 17 year period using a log transformation of their allocated amounts. Here, we continued to see the steady flow of continuing grants, with some outliers of low grant awards. We also observed a more narrow, but steady concentration, of new grants, with even more outliers of lower grant awards. With this log transformation, we observed a large gap in the amount of revised grants. 
+
+\vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type)) + facet_wrap(~action_type) + ggtitle("Seasonal cyclicality 2012-2015") + labs(x="Obligation action date, 2012-2015",y="log(Grant Dollars per month of research)") + 
