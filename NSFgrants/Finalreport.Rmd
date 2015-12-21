@@ -38,7 +38,7 @@ This variable denotes the name of the recipient, usually a university or organiz
 * recipient_type -Type of Recipient  
 This variable allows us to identify whether the recipeint organization is a higher education institution, corporation, or non-profit, among other categories.
 
-* cfda_program_title - Field of research
+* cfda_program_title - Field of research  
 This refers to the research discipline of a grant. 
 
 #####Grant Recipient Location 
@@ -48,10 +48,10 @@ This refers to the research discipline of a grant.
 These variable allows us to identify the location of the recipient.  
 
 The following modifications were conducted to the existing variables:
-1. conversion of non-numeric variable into categorical variables 
-2. dates were transformed to be treated as dates by R
-3. dublicates of variable values were merged to be treated as identcal values 
-4. cfda_programm_title values were replaced by more concise Continue, New and Revision 
+1. conversion of non-numeric variable into categorical variables   
+2. dates were transformed to be treated as dates by R  
+3. dublicates of variable values were merged to be treated as identcal values     
+4. cfda_programm_title values were replaced by more concise Continue, New and Revision   
 
 The following variables were added as new columns
 * res_duration - This is the duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months.
