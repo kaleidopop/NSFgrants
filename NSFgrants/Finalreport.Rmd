@@ -46,7 +46,7 @@ Following variables were added as new columns
 \item
 res\_duration - duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months 
 \item
-costmon - fed\_funding\_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients
+costmon - fed\_funding\_amount was divided by res\_duration to establish the common base for comparing amounts alocated to different recipients
 \item
 monstar, mondec - month of research start and obligation action date respectively 
 \item
