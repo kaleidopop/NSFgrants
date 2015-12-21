@@ -6,7 +6,7 @@ output: pdf_document
 ---
 \section{Introduction}
 
-Innovation is often considered to be considered an engine for development. Governments typically support innovation by funding research and development for universities, corporations, and other institutions. (Etzkowitz and Leydesdorff 2000) Recently, the White House approved a bipartisan budget agreement which will allocate even more funding over the next years in order to maintain the United States' leadership in innovation. (Donavan 2015) One of the few agencies that this bipartisan agreement will support is the National Science Foundation (NSF). 
+Innovation is often considered to be considered an engine for development. Governments typically support innovation by funding research and development for universities, corporations, and other institutions. (Etzkowitz and Leydesdorff 2000) Recently, the White House approved a bipartisan budget agreement which will allocate even more funding over the next years in order to maintain the United States' leadership in innovation. (Donovan 2015) One of the few agencies that this bipartisan agreement will support is the National Science Foundation (NSF). 
 
 NSF is an independent, federal grantmaking agency that awards nearly one fourth of all federal grants in the United States, nearly 11,000 new grants per year, and has a current annual budget of $7.3 billion (NSF 2015). A majority of these grants support critical research in science and technology. In order to get a sense of how innovation research, as procured by the NSF, is distributed, one can visit the NSF website to locate some summary statistics about grant awards. However, the NSF website provides only basic information about the number of grants awarded and grant allocations by states and institutions. For any serious researcher who is interested in understanding the landscape of federal funding of innovation in the United States, one is met with an aggregate dataset that numbers in the millions of grants awarded since NSF's founding in 1950. 
 
@@ -92,7 +92,9 @@ ggplot(schoolsall,aes(x=obligation_action_date, y = logcost)) + geom_point(aes(c
 ggplot(schoolsall,aes(x=obligation_action_date, y = fed_funding_amount/100000)) + geom_point(aes(color= action_type )) + ggtitle("Nominal Grant Dollars per month of research / $100K, historical 1999-2016")+ labs(x="Obligation action date",y="Dollars per month of research / $100K") 
 
 ```
-We then categorically analyzed the difference between continuing, new, and revised grants over the 17 year period using a log transformation of their allocated amounts. Here, we continued to see the steady flow of continuing grants, with some outliers of low grant awards. We also observed a more narrow, but steady concentration, of new grants, with even more outliers of lower grant awards. With this log transformation, we observed a large gap in the amount of revised grants. \vspace{20 mm}
+We then categorically analyzed the difference between continuing, new, and revised grants over the 17 year period using a log transformation of their allocated amounts. Here, we continued to see the steady flow of continuing grants, with some outliers of low grant awards. We also observed a more narrow, but steady concentration, of new grants, with even more outliers of lower grant awards. 
+
+We also noted some seasonal cyclicity over the 16 year period, where approximatley every three years, there appears to be an upswing in grant amounts. \vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type)) + facet_wrap(~action_type) + ggtitle("Seasonal cyclicality 2012-2015") + labs(x="Obligation action date, 2012-2015",y="log(Grant Dollars per month of research)") + 
@@ -102,7 +104,7 @@ ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(colo
   axis.ticks = element_blank())
  
 ```
-About this plot\vspace{20 mm}
+With this log transformation, we observed a large gap in the amount of revised grants. Analyzed in nominal grant allocation per month, we saw a steady flow of revised grants in perceived gap years in the middle of this 17 year cycle, with more grant amount fluctuations in other years. \vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=3, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata5, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("A gap in revisions") + labs(x="Obligation action date, 1999-2015",y="log$") + 
@@ -112,7 +114,11 @@ ggplot(newdata5, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(colo
   axis.ticks = element_blank())
  
 ```
+<<<<<<< HEAD
 The plot of revisions shows a significant gap which might be explained by either no funding activity (no revisions in these years) or technicalities of log conversions - there were +inf and -inf values that had to be substituted by NA values and these values might have been concentrated in the time period reflected on this plot.\vspace{10 mm}
+=======
+\vspace{10 mm}
+>>>>>>> origin/master
 
 ```{r, fig.width=12, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("Gap explained by log conversion") + labs(y="Nominal M/$100K",x=element_blank()) + 
@@ -122,7 +128,11 @@ ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + g
   axis.ticks = element_blank())
  
 ```
+<<<<<<< HEAD
 Plotting the nominal scale (not log-transformed) shows that the values in the gap years are present and are negative and that explains the negative infinite values. This adds a limitation of this research - decreasing the difficulty of producing visual insights  affects the quality of data. In this case it significantly decreases the qyality of data and can lead to wrong conclusions.  \vspace{20 mm}
+=======
+In order to better understand the cost differentials of these awarded grants and to better understand the perceived gaps, we studied the density of the three action types over the 17 year period. The density plot reveals several factors about the distribution of our data points. For instance, there were two  \vspace{20 mm}
+>>>>>>> origin/master
 
 ```{r, fig.width=4, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=log(costmon), fill=action_type)) + geom_density(alpha = 0.6) + ggtitle("Cost differences between action types") + labs(y="Density",x="log(Grant $/Month)")
@@ -166,12 +176,14 @@ ggplot(sumbystate, aes(x=fed_funding_amount, y=reorder(principal_place_state_cod
         panel.grid.minor.y = element_blank(),
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 ```
+
 California, New York, Massachussetts and DC are the states with the highest annual cimilative allocations. Annual variance is high for these four but being a recipient state with the most allocations is consistent across 1999-2016. 
 The range is significant - every tick is 300 million dollars so for example California range is 500 m - 1 billion which is the difference of 500 million dollars between the highest and lowest years for this state. 
 
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(bigstates, aes(x=principal_place_state_code, y=log(costmon), fill = action_type)) + geom_boxplot() + facet_wrap(~action_type) + guides(colour = guide_legend(override.aes = list(size=12)))+ ggtitle("Most financed states - outliers") + labs(x=element_blank(),y="log(Grant $/Month)")
 ```
+
 California, New York and DC consistently show more negative otliers (small grants) than other states given that medians with minor variations are roughly similar for most of the larfest states and the upper bounds for larger grants are roughly the same as well.
 
 \section{Months}
@@ -185,14 +197,19 @@ ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggti
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 
 ```
+
 Largest amounts consistently distributed in Summmer months and September - activity significantly slows down in the fall and winter
 Activity peaks in August and is slightly lower in September. We can conclude that annual NSF cycle is October - September
+
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 
 ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1) + facet_wrap(~action_type) +geom_vline(aes(xintercept=mean(logcost), na.rm=T), color="red", linetype="dashed", size=1) + ggtitle("Monthly variations") + labs(x="log(Grant $/Month)",y="Density")
 ```
+
 Frequency changes month - to month, most significantly in Revised grants, creating a bimodal distribution 
 Continue and New - some shifts in allocations plus frequency varies making most frequent values more or less distinct depending on the month
+
+
 
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() + facet_wrap(~action_type)+ ggtitle("Fall variance") + labs(x=element_blank(),y="log(Grant $/Month)")+ theme(axis.text.x = element_text(angle=45))
@@ -200,7 +217,6 @@ ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() 
 ```
 There is consistent increase in variance during the summer, it slows down in September (activity in general)
 A strong positive skew - a lot of negative outliers 
-
 
 \section{Recipient}
 
@@ -216,7 +232,10 @@ ggplot(sumbyrect, aes(x=fed_funding_amount, y=reorder(recipient_type, fed_fundin
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 
 ```
+
 Highest cumulative amounts among state and private higher education institutions and "All other" but also the dispersion is quite high - it seems like there is no fixed proportion of total grant dollars that higher education institutions are recieving each year. 
+
+
 \section{Discussion}
 
 
