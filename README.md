@@ -1,11 +1,8 @@
-# Research Team
-Ilya Perepelitsa, Deepa Mehta, Sahar Al Hassan, Kaitlin Lynes
-
 #About
 
-This project aims to understand the distribution of National Science Foundation research & development grants from 1999 to 2016. We developed a series of subsets that focused on grant duration by action type (new, continuing, and revised grants), by recipient type, by state, and by types of research in the United States during this period. 
+This project aims to understand the distribution of National Science Foundation research & development grants from 1999 to 2016. We developed a series of subsets that focused on grant duration by action type (new, continuing, and revised grants), by recipient type, by state, and by types of research in the United States during this period. We then carried out a micro-study of four states, New York, DC, Massachussetts, and California, that were allocated the highest number of grant dollars. 
 
-We then carried out a micro-study of four states, New York, DC, Massachussetts, and California, that were allocated the highest number of grant dollars. 
+This dataset can be helpful to social science researchers, grantseeking organizations, and state agencies to better understand the landscape of scientific funding in the United States. 
 
 # Dataset 
 The dataset used in this study is comprised of queries obtained from https://www.usaspending.gov 
@@ -47,3 +44,8 @@ In order to obtain the graphical output:
 1. Load the schoolsall data.frame from the file NSF.RData
 2. Execute the code in subsets.R 
 3. All the graphs are listed in the newgraphs.R file and are grouped in sections
+
+
+# Research Team
+Ilya Perepelitsa, Deepa Mehta, Sahar Al Hassan, Kaitlin Lynes
+
