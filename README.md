@@ -1,11 +1,18 @@
-# NSFgrants
-Population of NSF grants
+# NSF R&D Grants 1999-2016
 
-To get graphical output - load the schoolsall data.frame from the file NSF.RData and execute the code in subsets.R first. All the graphs are listed in the newgraphs.R file and are grouped in sections
+This project examines the distribution of National Science Foundation research & development grants from 1999 to 2016. We focus on grant duration by action type (new, continuing, and revised grants), by recipient type, by state, and by types of research in the United States during this period. We then carried out a micro-study of four states, New York, DC, Massachussetts, and California, that were allocated the highest number of grant dollars. 
 
+In order to obtain the graphical output:
+1. Load the schoolsall data.frame from the file NSF.RData
+2. Execute the code in subsets.R 
+3. All the graphs are listed in the newgraphs.R file and are grouped in sections
 
+# Dataset 
 The dataset used in this study is comprised of queries obtained from https://www.usaspending.gov 
+
 Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. 
+
+
 The variables that were selected for the working data frame are: 
 
 recipient_name - Recipient name
@@ -33,6 +40,6 @@ Following variables were added as new columns
 3. monstar, mondec - month of research start and obligation action date respectively 
 4. logcost - log-transormed costmon calculated for plotting
 
-The resylting dataset consists of 410292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
+The resulting dataset consists of 410292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
 
 
