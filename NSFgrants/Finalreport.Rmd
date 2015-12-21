@@ -159,7 +159,7 @@ ggplot(sumbystate, aes(x=fed_funding_amount, y=reorder(principal_place_state_cod
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(bigstates, aes(x=principal_place_state_code, y=log(costmon), fill = action_type)) + geom_boxplot() + facet_wrap(~action_type) + guides(colour = guide_legend(override.aes = list(size=12)))+ ggtitle("Most financed states - outliers") + labs(x=element_blank(),y="log(Grant $/Month)")
 ```
-
+California, New York and DC consistently show more negative otliers (small grants) than other states given that medians with minor variations are roughly similar for most of the larfest states and the upper bounds for larger grants are roughly the same as well.
 
 \section{Months}
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
