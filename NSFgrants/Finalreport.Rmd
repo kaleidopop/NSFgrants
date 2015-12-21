@@ -177,7 +177,8 @@ ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggti
 
 ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1) + facet_wrap(~action_type) +geom_vline(aes(xintercept=mean(logcost), na.rm=T), color="red", linetype="dashed", size=1) + ggtitle("Monthly variations") + labs(x="log(Grant $/Month)",y="Density")
 ```
-
+Frequency changes month - to month, most significantly in Revised grants, creating a bimodal distribution 
+Continue and New - some shifts in allocations plus frequency varies making most frequent values more or less distinct depending on the month
 
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() + facet_wrap(~action_type)+ ggtitle("Fall variance") + labs(x=element_blank(),y="log(Grant $/Month)")+ theme(axis.text.x = element_text(angle=45))
