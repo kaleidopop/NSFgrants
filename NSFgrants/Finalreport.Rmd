@@ -154,7 +154,8 @@ ggplot(sumbystate, aes(x=fed_funding_amount, y=reorder(principal_place_state_cod
         panel.grid.minor.y = element_blank(),
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 ```
-
+California, New York, Massachussetts and DC are the states with the highest annual cimilative allocations. Annual variance is high for these four but being a recipient state with the most allocations is consistent across 1999-2016. 
+The range is significant - every tick is 300 million dollars so for example California range is 500 m - 1 billion which is the difference of 500 million dollars between the highest and lowest years for this state. 
 
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(bigstates, aes(x=principal_place_state_code, y=log(costmon), fill = action_type)) + geom_boxplot() + facet_wrap(~action_type) + guides(colour = guide_legend(override.aes = list(size=12)))+ ggtitle("Most financed states - outliers") + labs(x=element_blank(),y="log(Grant $/Month)")
