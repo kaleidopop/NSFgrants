@@ -141,7 +141,10 @@ ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxp
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed fields of research") + labs(y=element_blank(),x="Cumulative annual allocation") + geom_point(size=3) + theme(axis.text.x = element_text(angle=60, hjust = 1), panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 ```
-
+STEM fields are consistently recieving the highest annual total allocations
+Education and Human Resources - unusual to see it among technical sciences
+STEM fields recieve 500 million - 1.5 billion a year consistently 
+distribution is relatively normal - small skews , variance is very high
 \section{States}
 
 
