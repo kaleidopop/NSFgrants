@@ -30,7 +30,7 @@ As a starting point, our dataset is comprised of queries obtained from the publi
 This is the total amount awarded for a particular grant.
 
 * action_type - Type of Grant Award  
-This variable tells us whether this is a new grant, a continuing grant, or revised grant. A new grant refers to a new award which typically entail a "specific level of support for a specified period of time", while continuing grants provide specified support for an initial period of time, "with a statement of intent to provide additional support of the project for additional periods, provided funds are available", while revised grants refer to existing NSF grants that have been amended with new terms (NSF 2015). Revised grants differ from continued grants in that some aspect of a grant's funding needs appears to have changed, and these Revised grants must now compete direclty with new grants. 
+This variable tells us whether this is a new grant, a continuing grant, or revised grant. A new grant refers to a new award which typically entail a "specific level of support for a specified period of time", while continuing grants provide specified support for an initial period of time, "with a statement of intent to provide additional support of the project for additional periods, provided funds are available", while revised grants refer to existing NSF grants that have been amended with new terms (NSF 2015). Revised grants differ from continued grants in that some aspect of a grant's funding needs appears to have changed, and these revised grants must now compete direclty with new grants. 
 
 #####Grant Recipient Information 
 * recipient_name - Recipient Name  
@@ -43,7 +43,7 @@ This variable allows us to identify whether the recipeint organization is a high
 This refers to the research discipline of a grant. 
 
 #####Grant Recipient Location 
-* recipient_city_name - Recipient's City  
+* recipient_city_name - Recipient city  
 * principal_place_state - Recipient location state  
 * principal_place_state_code - Recipient location state code
 These variable allows us to identify the location of the recipient.  
