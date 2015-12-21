@@ -13,7 +13,7 @@ The resulting dataset consists of 410292 observations of 17 variables. Various s
 
 #Working Dataframe
 
-##The variables that were selected for the working data frame are: 
+####The variables that were selected for the working data frame are: 
 recipient_name - Recipient name
 recipient_city_name - Name of recipient's location city
 recipient_type -Type of recipient ranging from non-profits and corporations to higher educational institutions
@@ -27,20 +27,20 @@ cfda_program_title - Field of research
 fiscal_year - Budget year
 principal_place_state_code - Recipient location state code
 
-##The following modifications were conducted to the existing variables:
+####The following modifications were conducted to the existing variables:
 1. Conversion of non-numeric variable into categorical variables 
 2. Dates were transformed to be treated as dates by R
 3. Duplicates of variable values were merged to be treated as identcal values 
 4. To visualize grant types over time, some values, such as cfda_programm_title, were replaced with more concise values such as Continue, New and Revision.
 
-$$The following variables were added as new columns: 
+####The following variables were added as new columns: 
 1. res_duration - duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months 
 2. costmon - fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients 
 3. monstar, mondec - month of research start and obligation action date respectively 
 4. logcost - log-transormed costmon calculated for plotting
 
 
-# Installation 
+#Installation 
 
 In order to obtain the graphical output:
 1. Load the schoolsall data.frame from the file NSF.RData
@@ -48,6 +48,6 @@ In order to obtain the graphical output:
 3. All the graphs are listed in the newgraphs.R file and are grouped in sections
 
 
-# Research Team
+#Research Team
 Ilya Perepelitsa, Deepa Mehta, Sahar Al Hassan, Kaitlin Lynes
 
