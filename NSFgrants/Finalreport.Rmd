@@ -172,7 +172,8 @@ ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggti
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 
 ```
-
+Largest amounts consistently distributed in Summmer months and September - activity significantly slows down in the fall and winter
+Activity peaks in August and is slightly lower in September. We can conclude that annual NSF cycle is October - September
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 
 ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1) + facet_wrap(~action_type) +geom_vline(aes(xintercept=mean(logcost), na.rm=T), color="red", linetype="dashed", size=1) + ggtitle("Monthly variations") + labs(x="log(Grant $/Month)",y="Density")
