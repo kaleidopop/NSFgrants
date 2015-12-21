@@ -15,7 +15,7 @@ Using multiple queries on the followig page https://www.usaspending.gov/Pages/Te
 The variables that were selected for the working data frame are: 
 
 \begin{tabular}{lll}
-recipient_name & Recipient name\\
+recipient_name&Recipient name\\
 recipient_city_name&Name of recipient's location city\\
 recipient_type&Type of recipient ranging from non-profits and corporations to higher educational institutions\\
 action_type&New grant , Continuing grant or revised\\
