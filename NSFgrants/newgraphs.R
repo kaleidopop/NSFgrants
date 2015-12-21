@@ -26,6 +26,9 @@ ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + g
 ggplot(schoolsall, aes(x=log(costmon), fill=action_type)) + geom_density(alpha = 0.6)
 ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxplot()+ facet_wrap(~action_type)
 
+#### NEW/CONT... - length and cost
+ggplot(schoolsall, aes(y=res_duration, x=log(costmon))) + geom_point(aes(color = action_type))+ facet_wrap(~action_type)
+
 
 
 
