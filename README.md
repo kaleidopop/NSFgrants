@@ -19,15 +19,15 @@ fiscal_year
 principal_place_state_code
 
 The following modifications were conducted to the existing variables:
-1) conversion of non-numeric variable into categorical variables 
-2) dates were transformed to be treated as dates by R
-3) dublicates of variable values were merged to be treated as identcal values 
-4) cfda_programm_title values werereplaced by more concise Continue, New and Revision 
+1. conversion of non-numeric variable into categorical variables 
+2. dates were transformed to be treated as dates by R
+3. dublicates of variable values were merged to be treated as identcal values 
+4. cfda_programm_title values werereplaced by more concise Continue, New and Revision 
 
 Following variables were added as new columns
-1) res_duration - duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months 
-2) costmon - fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients 
-3) monstar, mondec - month of research start and obligation action date respectively 
-4) logcost - log-transormed costmon calculated for plotting
+1. res_duration - duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months 
+2. costmon - fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients 
+3. monstar, mondec - month of research start and obligation action date respectively 
+4. logcost - log-transormed costmon calculated for plotting
 
 
