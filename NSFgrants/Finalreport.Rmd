@@ -18,30 +18,36 @@ The broader aim of this exercise in big data analytics is to be able to apply qu
 
 As a starting point, our dataset is comprised of queries obtained from the publicly available https://www.usaspending.gov. Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. The variables that were selected for the working dataframe are as follows: 
 
-* recipient_name - Recipient Name
-This variable denotes the name of the recipient, usually a university or organization. 
+####Grant Periods
+* fiscal_year - Budget year
+* starting_date - Start date of awarded research project 
+* ending_date - End date of awarded research project
+* obligation_action_date - Grant Decision  
+This variable tells us the date that the award was obligated. 
 
-* recipient_city_name - Recipient's City - 
-* principal_place_state - Recipient location state
-These variable allows us to identify the location of the recipient.  
+####Grant Amounts and Grant Type
+* fed_funding_amount - Dollar amount of grant 
+This is the total amount awarded for a particular grant.
 
-* recipient_type -Type of Recipient
-This variable allows us to identify whether the recipeint organization is a higher education institution, corporation, or non-profit, among other categories.
-
-* action_type - Type of Grant Award
+* action_type - Type of Grant Award  
 This variable tells us whether this is a new grant, a continuing grant, or revised grant. A new grant refers to a new award which typically entail a "specific level of support for a specified period of time", while continuing grants provide specified support for an initial period of time, "with a statement of intent to provide additional support of the project for additional periods, provided funds are available", while revised grants refer to existing NSF grants that have been amended with new terms (NSF 2015).
 
-* fed_funding_amount - Dollar amount granted 
+####Grant Recipient Information 
+* recipient_name - Recipient Name  
+This variable denotes the name of the recipient, usually a university or organization. 
 
-* obligation_action_date - Grant Decisoin - This variable tells us whether a grant was approved. We are generally operating with approved grants. 
-
-* starting_date - Start date of awarded research project 
-
-* ending_date - End date of awarded research project
+* recipient_type -Type of Recipient  
+This variable allows us to identify whether the recipeint organization is a higher education institution, corporation, or non-profit, among other categories.
 
 * cfda_program_title - Field of research
-* fiscal_year - Budget year
+This refers to the research discipline of a grant. 
+
+####Grant Recipient Location 
+* recipient_city_name - Recipient's City  
+* principal_place_state - Recipient location state  
 * principal_place_state_code - Recipient location state code
+These variable allows us to identify the location of the recipient.  
+
 
 The following modifications were conducted to the existing variables:
 1. conversion of non-numeric variable into categorical variables 
