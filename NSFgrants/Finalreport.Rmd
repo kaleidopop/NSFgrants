@@ -1,12 +1,12 @@
 ---
-title: "Funding Innovation: An Analysis of Federal Research and Development Grants in the United States 1999-2016"
-author: "Sahar Alhassan, Kaytlin Lynes, Deepa Mehta, Ilya Perepelitsa"
+title: "Innovation Landscapes: An Analysis of National Science Foundation Research Grants from 1999-2016"
+author: "Sahar Alhassan, Kaitlin Lynes, Deepa Mehta, Ilya Perepelitsa"
 date: "December 21, 2015"
 output: pdf_document
 ---
 \section{Introduction}
 
-The National Science Foundation is the number one grant-making agency.
+The National Science Foundation is 
 
 \section{Methodology}
 
@@ -40,6 +40,7 @@ Following variables were added as new columns
 4. logcost - log-transormed costmon calculated for plotting
 
 The resylting dataset consists of 410292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
+
 \section{General observations}
 As seen on the plot\vspace{20 mm}
 
@@ -180,5 +181,11 @@ ggplot(sumbyrect, aes(x=fed_funding_amount, y=reorder(recipient_type, fed_fundin
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 
 ```
+
+\section{Discussion}
+
+
+
+\section{Bibliography}
 
 
