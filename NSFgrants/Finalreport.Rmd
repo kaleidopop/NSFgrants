@@ -17,7 +17,7 @@ The broader aim of this exercise in big data analytics is to be able to apply qu
 \begin{center}
 \section{Methodology}
 \end{center}
-As a starting point, our dataset is comprised of queries obtained from the publicly available https://www.usaspending.gov. Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. The variables that were selected for the working dataframe are as follows: 
+As a starting point, our dataset is comprised of queries obtained from the publicly available https://www.usaspending.gov. Using multiple queries on the following page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. The variables that were selected for the working dataframe are as follows: 
 
 #####Grant Periods
 * fiscal_year - Budget year
