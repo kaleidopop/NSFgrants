@@ -1,6 +1,6 @@
 ---
 title: "Innovation Landscapes: An Analysis of National Science Foundation Research Grants from 1999-2016"
-author: "Sahar Alhassan, Kaitlin Lynes, Deepa Mehta, Ilya Perepelitsa"
+author: "Sahar Alhassan, Kaitlyn Lynes, Deepa Mehta, Ilya Perepelitsa"
 date: "December 21, 2015"
 output: pdf_document
 ---
