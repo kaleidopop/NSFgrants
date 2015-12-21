@@ -136,7 +136,9 @@ ggplot(schoolsall, aes(y=res_duration, x=log(costmon))) + geom_point(aes(color =
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxplot()+ facet_wrap(~action_type) + ggtitle("Monthly Outliers") + theme(axis.text.x = element_text(angle=45)) + labs(y="log(Grant $/Month)",x=element_blank())
 ```
-
+Decrease in variance towards the end of the year
+greatest number of outliers for New and Continuing grants - summer and fall
+greates number of positive outliers in revisions - same calendar trends as for other types 
 \section{Fields of research}
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed fields of research") + labs(y=element_blank(),x="Cumulative annual allocation") + geom_point(size=3) + theme(axis.text.x = element_text(angle=60, hjust = 1), panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
