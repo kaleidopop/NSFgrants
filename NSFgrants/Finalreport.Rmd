@@ -112,7 +112,7 @@ ggplot(newdata5, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(colo
   axis.ticks = element_blank())
  
 ```
-About this plot\vspace{10 mm}
+The plot of revisions shows a significant gap which might be explained by either no funding activity (no revisions in these years) or technicalities of log conversions - there were +inf and -inf values that had to be substituted by NA values and these values might have been concentrated in the time period reflected on this plot.\vspace{10 mm}
 
 ```{r, fig.width=12, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("Gap explained by log conversion") + labs(y="Nominal M/$100K",x=element_blank()) + 
@@ -122,7 +122,7 @@ ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + g
   axis.ticks = element_blank())
  
 ```
-About this plot\vspace{20 mm}
+Plotting the nominal scale (not log-transformed) shows that the values in the gap years are present and are negative and that explains the negative infinite values. This adds a limitation of this research - decreasing the difficulty of producing visual insights  affects the quality of data. In this case it significantly decreases the qyality of data and can lead to wrong conclusions.  \vspace{20 mm}
 
 ```{r, fig.width=4, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=log(costmon), fill=action_type)) + geom_density(alpha = 0.6) + ggtitle("Cost differences between action types") + labs(y="Density",x="log(Grant $/Month)")
