@@ -5,9 +5,8 @@ date: "December 21, 2015"
 output: pdf_document
 ---
 \begin{center}
-\end{center}
 \section{Introduction}
-
+\end{center}
 Innovation is often considered to be considered an engine for development. Governments typically support innovation by funding research and development for universities, corporations, and other institutions. (Etzkowitz and Leydesdorff 2000) Recently, the White House approved a bipartisan budget agreement which will allocate even more funding over the next years in order to maintain the United States' leadership in innovation. (Donovan 2015) One of the few agencies that this bipartisan agreement will support is the National Science Foundation (NSF). 
 
 NSF is an independent, federal grantmaking agency that awards nearly one fourth of all federal grants in the United States, nearly 11,000 new grants per year, and has a current annual budget of $7.3 billion (NSF 2015). A majority of these grants support critical research in science and technology. In order to get a sense of how innovation research, as procured by the NSF, is distributed, one can visit the NSF website to locate some summary statistics about grant awards. However, the NSF website provides only basic information about the number of grants awarded and grant allocations by states and institutions. For any serious researcher who is interested in understanding the landscape of federal funding of innovation in the United States, one is met with an aggregate dataset that numbers in the millions of grants awarded since NSF's founding in 1950. 
@@ -16,9 +15,8 @@ Given the sheer number of grants and the number of variables that denote grant t
 
 The broader aim of this exercise in big data analytics is to be able to apply quantitative methods to larger datasets, acquire subsets, and devise collated dataframes that can then be useful in identifying distributional attributes. The findings in this report and this dataframe may be useful to scholars, grantseeking organizations and individuals, as well as state agencies and private institutions to better understanding the landscape of scientific research funding in the United States. 
 \begin{center}
-\end{center}
 \section{Methodology}
-
+\end{center}
 As a starting point, our dataset is comprised of queries obtained from the publicly available https://www.usaspending.gov. Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. The variables that were selected for the working dataframe are as follows: 
 
 #####Grant Periods
@@ -68,8 +66,8 @@ The following variables were added as new columns
 The resulting dataset consists of 410,292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
 
 \begin{center}
-\end{center}
 \section{General observations}
+\end{center}
 
 Initially, we mapped the total number of awarded grants (410,292) from 1999 to 2016 based on the _Obligation Action Date_ and _Awarded Grant Dollars per month_ divided by _Action Type_. Here, we observed a concentration of continuing grants using a log transformation to identify any relationships between the type of grant over this 17 year period. We also observed a steady number of all grants to be somewhere between $0 to $500,000, with some continuing awards reaching $1,000,000 and some new awards reaching $1,500,000. We also observed revised grants in the negatives. We attribute these negative numbers of nominal grant dollars (mostly in revision grants) to the fact that these grants often seek to make up for cost overruns. \vspace{20 mm}
 
@@ -145,7 +143,7 @@ ggplot(schoolsall, aes(x=log(costmon), fill=action_type)) + geom_density(alpha =
 Strong bimodal cost trend for revised grants, both modes are lower than Continuing and New grants.
 New grants are generally more expensive and the frequency of such higher cost is higher than among Continuing grants
 
-About this plot\vspace{20 mm}
+\vspace{20 mm}
 ```{r, fig.width=12, fig.height=5, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(y=res_duration, x=log(costmon))) + geom_point(aes(color = action_type))+ facet_wrap(~action_type)+ ggtitle("Difference in cost and duration")+ labs(y="Duration in Months",x="log(Grant $/Month)")
 ```
@@ -161,8 +159,8 @@ Decrease in variance towards the end of the year
 greatest number of outliers for New and Continuing grants - summer and fall
 greates number of positive outliers in revisions - same calendar trends as for other types 
 \begin{center}
-\end{center}
 \section{Fields of research}
+\end{center}
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed fields of research") + labs(y=element_blank(),x="Cumulative annual allocation") + geom_point(size=3) + theme(axis.text.x = element_text(angle=60, hjust = 1), panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 ```
@@ -171,8 +169,8 @@ Education and Human Resources - unusual to see it among technical sciences
 STEM fields recieve 500 million - 1.5 billion a year consistently 
 distribution is relatively normal - small skews , variance is very high
 \begin{center}
-\end{center}
 \section{States}
+\end{center}
 
 
 ```{r, fig.width=15, fig.height=10, echo=FALSE, warning=FALSE, error=FALSE}
@@ -194,8 +192,9 @@ ggplot(bigstates, aes(x=principal_place_state_code, y=log(costmon), fill = actio
 
 California, New York and DC consistently show more negative otliers (small grants) than other states given that medians with minor variations are roughly similar for most of the larfest states and the upper bounds for larger grants are roughly the same as well.
 \begin{center}
-\end{center}
 \section{Months}
+\end{center}
+
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggtitle("Highest cumulative months values") +
   geom_point(size=3) + 
@@ -228,8 +227,8 @@ There is consistent increase in variance during the summer, it slows down in Sep
 A strong positive skew - a lot of negative outliers 
 
 \begin{center}
-\end{center}
 \section{Recipient}
+\end{center}
 
 
 
@@ -248,12 +247,12 @@ Highest cumulative amounts among state and private higher education institutions
 
 
 \begin{center}
-\end{center}
 \section{Discussion}
+\end{center}
 
 
 \begin{center}
-\end{center}
 \section{Bibliography}
+\end{center}
 
 
