@@ -92,9 +92,7 @@ ggplot(schoolsall,aes(x=obligation_action_date, y = logcost)) + geom_point(aes(c
 ggplot(schoolsall,aes(x=obligation_action_date, y = fed_funding_amount/100000)) + geom_point(aes(color= action_type )) + ggtitle("Nominal Grant Dollars per month of research / $100K, historical 1999-2016")+ labs(x="Obligation action date",y="Dollars per month of research / $100K") 
 
 ```
-We then categorically analyzed the difference between continuing, new, and revised grants over the 17 year period using a log transformation of their allocated amounts. Here, we continued to see the steady flow of continuing grants, with some outliers of low grant awards. We also observed a more narrow, but steady concentration, of new grants, with even more outliers of lower grant awards. With this log transformation, we observed a large gap in the amount of revised grants. 
-
-\vspace{20 mm}
+We then categorically analyzed the difference between continuing, new, and revised grants over the 17 year period using a log transformation of their allocated amounts. Here, we continued to see the steady flow of continuing grants, with some outliers of low grant awards. We also observed a more narrow, but steady concentration, of new grants, with even more outliers of lower grant awards. With this log transformation, we observed a large gap in the amount of revised grants. \vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type)) + facet_wrap(~action_type) + ggtitle("Seasonal cyclicality 2012-2015") + labs(x="Obligation action date, 2012-2015",y="log(Grant Dollars per month of research)") + 
