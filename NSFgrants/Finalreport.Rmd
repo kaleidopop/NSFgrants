@@ -183,6 +183,10 @@ ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1)
 ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() + facet_wrap(~action_type)+ ggtitle("Fall variance") + labs(x=element_blank(),y="log(Grant $/Month)")+ theme(axis.text.x = element_text(angle=45))
 
 ```
+There is consistent increase in variance during the summer, it slows down in September (activity in general)
+A strong positive skew - a lot of negative outliers 
+
+
 \section{Recipient}
 
 
@@ -197,7 +201,7 @@ ggplot(sumbyrect, aes(x=fed_funding_amount, y=reorder(recipient_type, fed_fundin
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 
 ```
-
+Highest cumulative amounts among state and private higher education institutions and "All other" but also the dispersion is quite high - it seems like there is no fixed proportion of total grant dollars that higher education institutions are recieving each year. 
 \section{Discussion}
 
 
