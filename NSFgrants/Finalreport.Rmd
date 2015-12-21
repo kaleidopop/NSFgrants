@@ -18,21 +18,21 @@ The broader aim of this exercise in big data analytics is to be able to apply qu
 
 As a starting point, our dataset is comprised of queries obtained from the publicly available https://www.usaspending.gov. Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. The variables that were selected for the working dataframe are as follows: 
 
-####Grant Periods
+#####Grant Periods
 * fiscal_year - Budget year
 * starting_date - Start date of awarded research project 
 * ending_date - End date of awarded research project
 * obligation_action_date - Grant Decision  
 This variable tells us the date that the award was obligated. 
 
-####Grant Amounts and Grant Type
+#####Grant Amounts and Grant Type
 * fed_funding_amount - Dollar amount of grant 
 This is the total amount awarded for a particular grant.
 
 * action_type - Type of Grant Award  
 This variable tells us whether this is a new grant, a continuing grant, or revised grant. A new grant refers to a new award which typically entail a "specific level of support for a specified period of time", while continuing grants provide specified support for an initial period of time, "with a statement of intent to provide additional support of the project for additional periods, provided funds are available", while revised grants refer to existing NSF grants that have been amended with new terms (NSF 2015).
 
-####Grant Recipient Information 
+#####Grant Recipient Information 
 * recipient_name - Recipient Name  
 This variable denotes the name of the recipient, usually a university or organization. 
 
@@ -42,29 +42,33 @@ This variable allows us to identify whether the recipeint organization is a high
 * cfda_program_title - Field of research
 This refers to the research discipline of a grant. 
 
-####Grant Recipient Location 
+#####Grant Recipient Location 
 * recipient_city_name - Recipient's City  
 * principal_place_state - Recipient location state  
 * principal_place_state_code - Recipient location state code
 These variable allows us to identify the location of the recipient.  
 
-
 The following modifications were conducted to the existing variables:
 1. conversion of non-numeric variable into categorical variables 
 2. dates were transformed to be treated as dates by R
 3. dublicates of variable values were merged to be treated as identcal values 
-4. cfda_programm_title values werereplaced by more concise Continue, New and Revision 
+4. cfda_programm_title values were replaced by more concise Continue, New and Revision 
 
-Following variables were added as new columns
-1. res_duration - duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months 
-2. costmon - fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients 
-3. monstar, mondec - month of research start and obligation action date respectively 
-4. logcost - log-transormed costmon calculated for plotting
+The following variables were added as new columns
+* res_duration - This is the duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months.
+
+* costmon - The variable fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients.
+
+* monstar, mondec - Month of research start and obligation action date respectively.
+
+* logcost - Log-transormed costmon calculated for plotting these data.
 
 The resulting dataset consists of 410,292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
 
+
 \section{General observations}
-As seen on the plot\vspace{20 mm}
+
+About this plot: \vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 load("NSF.RData")
@@ -84,13 +88,13 @@ library(ggplot2)
 ggplot(schoolsall,aes(x=obligation_action_date, y = logcost)) + geom_point(aes(color= action_type ))  + ggtitle("log-transformed Grant Dollars per month of research, historical 1999-2016")+ labs(x="Obligation action date",y="log(Grant Dollars per month of research)") 
 
 ```
-\vspace{20 mm}
+About this plot\vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall,aes(x=obligation_action_date, y = fed_funding_amount/100000)) + geom_point(aes(color= action_type )) + ggtitle("Nominal Grant Dollars per month of research / $100K, historical 1999-2016")+ labs(x="Obligation action date",y="Dollars per month of research / $100K") 
 
 ```
-\vspace{20 mm}
+About this Plot\vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type)) + facet_wrap(~action_type) + ggtitle("Seasonal cyclicality 2012-2015") + labs(x="Obligation action date, 2012-2015",y="log(Grant Dollars per month of research)") + 
@@ -100,10 +104,7 @@ ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(colo
   axis.ticks = element_blank())
  
 ```
-\vspace{20 mm}
-
-
-
+About this plot\vspace{20 mm}
 
 ```{r, fig.width=12, fig.height=3, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata5, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("A gap in revisions") + labs(x="Obligation action date, 1999-2015",y="log$") + 
@@ -113,7 +114,7 @@ ggplot(newdata5, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(colo
   axis.ticks = element_blank())
  
 ```
-\vspace{10 mm}
+About this plot\vspace{10 mm}
 
 ```{r, fig.width=12, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("Gap explained by log conversion") + labs(y="Nominal M/$100K",x=element_blank()) + 
@@ -123,18 +124,16 @@ ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + g
   axis.ticks = element_blank())
  
 ```
-\vspace{20 mm}
+About this plot\vspace{20 mm}
 
 ```{r, fig.width=4, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=log(costmon), fill=action_type)) + geom_density(alpha = 0.6) + ggtitle("Cost differences between action types") + labs(y="Density",x="log(Grant $/Month)")
 ```
 
-\vspace{20 mm}
+About this plot\vspace{20 mm}
 ```{r, fig.width=12, fig.height=5, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(y=res_duration, x=log(costmon))) + geom_point(aes(color = action_type))+ facet_wrap(~action_type)+ ggtitle("Difference in cost and duration")+ labs(y="Duration in Months",x="log(Grant $/Month)")
 ```
-
-
 
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxplot()+ facet_wrap(~action_type) + ggtitle("Monthly Outliers") + theme(axis.text.x = element_text(angle=45)) + labs(y="log(Grant $/Month)",x=element_blank())
@@ -144,7 +143,6 @@ ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxp
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed fields of research") + labs(y=element_blank(),x="Cumulative annual allocation") + geom_point(size=3) + theme(axis.text.x = element_text(angle=60, hjust = 1), panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 ```
-
 
 \section{States}
 
@@ -176,8 +174,6 @@ ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggti
         panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
 
 ```
-
-
 
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 
