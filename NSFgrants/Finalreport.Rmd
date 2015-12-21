@@ -4,6 +4,8 @@ author: "Sahar Alhassan, Kaitlin Lynes, Deepa Mehta, Ilya Perepelitsa"
 date: "December 21, 2015"
 output: pdf_document
 ---
+\begin{center}
+\end{center}
 \section{Introduction}
 
 Innovation is often considered to be considered an engine for development. Governments typically support innovation by funding research and development for universities, corporations, and other institutions. (Etzkowitz and Leydesdorff 2000) Recently, the White House approved a bipartisan budget agreement which will allocate even more funding over the next years in order to maintain the United States' leadership in innovation. (Donovan 2015) One of the few agencies that this bipartisan agreement will support is the National Science Foundation (NSF). 
@@ -13,7 +15,8 @@ NSF is an independent, federal grantmaking agency that awards nearly one fourth 
 Given the sheer number of grants and the number of variables that denote grant type, this report began with a desire to develop an analytical methodology to understand the distribution of NSF grants and recognize any emergent patterns within these numbers. As such, this report studies NSF grants from the fiscal years 1999 to 2016 and aims to understand the distribution of NSF grants during this period. By developing a subset of the aggregate NSF data, we have been able to study the distribution of grant duration by type of grant (new grants, continuing grants, or revised grants), grants by recipient type (universities, private instititutions or corporations, etc.), by state, and by types of funded research. 
 
 The broader aim of this exercise in big data analytics is to be able to apply quantitative methods to larger datasets, acquire subsets, and devise collated dataframes that can then be useful in identifying distributional attributes. The findings in this report and this dataframe may be useful to scholars, grantseeking organizations and individuals, as well as state agencies and private institutions to better understanding the landscape of scientific research funding in the United States. 
-
+\begin{center}
+\end{center}
 \section{Methodology}
 
 As a starting point, our dataset is comprised of queries obtained from the publicly available https://www.usaspending.gov. Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. The variables that were selected for the working dataframe are as follows: 
@@ -64,7 +67,8 @@ The following variables were added as new columns
 
 The resulting dataset consists of 410,292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
 
-
+\begin{center}
+\end{center}
 \section{General observations}
 
 Initially, we mapped the total number of awarded grants (410,292) from 1999 to 2016 based on the _Obligation Action Date_ and _Awarded Grant Dollars per month_ divided by _Action Type_. Here, we observed a concentration of continuing grants using a log transformation to identify any relationships between the type of grant over this 17 year period. We also observed a steady number of all grants to be somewhere between $0 to $500,000, with some continuing awards reaching $1,000,000 and some new awards reaching $1,500,000. We also observed revised grants in the negatives. We attribute these negative numbers of nominal grant dollars (mostly in revision grants) to the fact that these grants often seek to make up for cost overruns. \vspace{20 mm}
@@ -156,6 +160,8 @@ ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxp
 Decrease in variance towards the end of the year
 greatest number of outliers for New and Continuing grants - summer and fall
 greates number of positive outliers in revisions - same calendar trends as for other types 
+\begin{center}
+\end{center}
 \section{Fields of research}
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed fields of research") + labs(y=element_blank(),x="Cumulative annual allocation") + geom_point(size=3) + theme(axis.text.x = element_text(angle=60, hjust = 1), panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
@@ -164,6 +170,8 @@ STEM fields are consistently recieving the highest annual total allocations
 Education and Human Resources - unusual to see it among technical sciences
 STEM fields recieve 500 million - 1.5 billion a year consistently 
 distribution is relatively normal - small skews , variance is very high
+\begin{center}
+\end{center}
 \section{States}
 
 
@@ -185,7 +193,8 @@ ggplot(bigstates, aes(x=principal_place_state_code, y=log(costmon), fill = actio
 ```
 
 California, New York and DC consistently show more negative otliers (small grants) than other states given that medians with minor variations are roughly similar for most of the larfest states and the upper bounds for larger grants are roughly the same as well.
-
+\begin{center}
+\end{center}
 \section{Months}
 ```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
 ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggtitle("Highest cumulative months values") +
@@ -218,6 +227,8 @@ ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() 
 There is consistent increase in variance during the summer, it slows down in September (activity in general)
 A strong positive skew - a lot of negative outliers 
 
+\begin{center}
+\end{center}
 \section{Recipient}
 
 
@@ -236,10 +247,13 @@ ggplot(sumbyrect, aes(x=fed_funding_amount, y=reorder(recipient_type, fed_fundin
 Highest cumulative amounts among state and private higher education institutions and "All other" but also the dispersion is quite high - it seems like there is no fixed proportion of total grant dollars that higher education institutions are recieving each year. 
 
 
+\begin{center}
+\end{center}
 \section{Discussion}
 
 
-
+\begin{center}
+\end{center}
 \section{Bibliography}
 
 
