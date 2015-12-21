@@ -8,18 +8,18 @@ The dataset used in this study is comprised of queries obtained from https://www
 Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. 
 The variables that were selected for the working data frame are: 
 
-recipient_name
-recipient_city_name
-recipient_type
-action_type
-fed_funding_amount
-obligation_action_date
-starting_date
-ending_date
-principal_place_state
-cfda_program_title
-fiscal_year
-principal_place_state_code
+recipient_name - Recipient name
+recipient_city_name - Name of recipient's location city
+recipient_type -Type of recipient ranging from non-profits and corporations to higher educational institutions
+action_type - New grant , Continuing grant or revised
+fed_funding_amount - Dollar amount granted
+obligation_action_date - Grant decision made
+starting_date - Start of research
+ending_date - End of research
+principal_place_state - Recipient location state
+cfda_program_title - Field of research
+fiscal_year - Budget year
+principal_place_state_code - Recipient location state code
 
 The following modifications were conducted to the existing variables:
 1. conversion of non-numeric variable into categorical variables 
@@ -32,5 +32,7 @@ Following variables were added as new columns
 2. costmon - fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients 
 3. monstar, mondec - month of research start and obligation action date respectively 
 4. logcost - log-transormed costmon calculated for plotting
+
+The resylting dataset consists of 410292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
 
 

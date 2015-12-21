@@ -1,0 +1,181 @@
+---
+title: "NSF Report"
+author: "Sahar Alhassan, Kaytlin Lynes, Deepa Mehta, Ilya Perepelitsa"
+date: "December 20, 2015"
+output: pdf_document
+---
+\section{Introduction}
+\section{Methodology}
+
+The dataset used in this study is comprised of queries obtained from https://www.usaspending.gov 
+Using multiple queries on the followig page https://www.usaspending.gov/Pages/TextView.aspx?data=HomeAwardTypeFunding , the range of fiscal years 1999-2016 was obtained. 
+The variables that were selected for the working data frame are: 
+
+recipient_name - Recipient name
+recipient_city_name - Name of recipient's location city
+recipient_type -Type of recipient ranging from non-profits and corporations to higher educational institutions
+action_type - New grant , Continuing grant or revised
+fed_funding_amount - Dollar amount granted
+obligation_action_date - Grant decision made
+starting_date - Start of research
+ending_date - End of research
+principal_place_state - Recipient location state
+cfda_program_title - Field of research
+fiscal_year - Budget year
+principal_place_state_code - Recipient location state code
+
+The following modifications were conducted to the existing variables:
+1. conversion of non-numeric variable into categorical variables 
+2. dates were transformed to be treated as dates by R
+3. dublicates of variable values were merged to be treated as identcal values 
+4. cfda_programm_title values werereplaced by more concise Continue, New and Revision 
+
+Following variables were added as new columns
+1. res_duration - duration of research obtained by calculating the difference between the ending and starting dates of research. Such values were divided by 30 to obtain duration in months 
+2. costmon - fed_funding_amount was divided by res_duration to establish the common base for comparing amounts alocated to different recipients 
+3. monstar, mondec - month of research start and obligation action date respectively 
+4. logcost - log-transormed costmon calculated for plotting
+
+The resylting dataset consists of 410292 observations of 17 variables. Various subsets were created to calculate cumulative amounts granted to states, programs and by months. Subsets of top recipient states was also created for similar purposes. 
+\section{General observations}
+As seen on the plot\vspace{20 mm}
+
+```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
+load("NSF.RData")
+
+newdata1 <- schoolsall[which(schoolsall$obligation_action_date < '2015-01-01' & schoolsall$obligation_action_date > '2012-01-01'), ]
+newdata5 <- schoolsall[which(schoolsall$starting_date < '2015-01-01' & schoolsall$starting_date > '1999-01-01'), ]
+
+bigstates <- schoolsall[which(schoolsall$principal_place_state_code == "CA" | schoolsall$principal_place_state_code == "CO" | schoolsall$principal_place_state_code == "DC" | schoolsall$principal_place_state_code == "IL"| schoolsall$principal_place_state_code == "MA"| schoolsall$principal_place_state_code == "NY"| schoolsall$principal_place_state_code == "PA"| schoolsall$principal_place_state_code == "TX"), ]
+
+sumbystate <- aggregate(fed_funding_amount ~ principal_place_state_code + fiscal_year, schoolsall, sum)
+sumbyprog <- aggregate(fed_funding_amount ~ cfda_program_title + fiscal_year, schoolsall, sum)
+sumbymon <- aggregate(fed_funding_amount ~ mondec + fiscal_year, schoolsall, sum)
+sumbyrect <- aggregate(fed_funding_amount ~ recipient_type + fiscal_year, schoolsall, sum)
+
+library(ggplot2)
+
+ggplot(schoolsall,aes(x=obligation_action_date, y = logcost)) + geom_point(aes(color= action_type ))  + ggtitle("log-transformed Grant Dollars per month of research, historical 1999-2016")+ labs(x="Obligation action date",y="log(Grant Dollars per month of research)") 
+
+```
+\vspace{20 mm}
+
+```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(schoolsall,aes(x=obligation_action_date, y = fed_funding_amount/100000)) + geom_point(aes(color= action_type )) + ggtitle("Nominal Grant Dollars per month of research / $100K, historical 1999-2016")+ labs(x="Obligation action date",y="Dollars per month of research / $100K") 
+
+```
+\vspace{20 mm}
+
+```{r, fig.width=12, fig.height=4, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(newdata1, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type)) + facet_wrap(~action_type) + ggtitle("Seasonal cyclicality 2012-2015") + labs(x="Obligation action date, 2012-2015",y="log(Grant Dollars per month of research)") + 
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+ 
+```
+\vspace{20 mm}
+
+
+
+
+```{r, fig.width=12, fig.height=3, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(newdata5, aes(y=logcost, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("A gap in revisions") + labs(x="Obligation action date, 1999-2015",y="log$") + 
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+ 
+```
+\vspace{10 mm}
+
+```{r, fig.width=12, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(newdata5, aes(y=fed_funding_amount/100000, x=obligation_action_date)) + geom_point(aes(color = action_type))+  facet_wrap(~action_type) + ggtitle("Gap explained by log conversion") + labs(y="Nominal M/$100K",x=element_blank()) + 
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+ 
+```
+\vspace{20 mm}
+
+```{r, fig.width=4, fig.height=2, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(schoolsall, aes(x=log(costmon), fill=action_type)) + geom_density(alpha = 0.6) + ggtitle("Cost differences between action types") + labs(y="Density",x="log(Grant $/Month)")
+```
+
+\vspace{20 mm}
+```{r, fig.width=12, fig.height=5, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(schoolsall, aes(y=res_duration, x=log(costmon))) + geom_point(aes(color = action_type))+ facet_wrap(~action_type)+ ggtitle("Difference in cost and duration")+ labs(y="Duration in Months",x="log(Grant $/Month)")
+```
+
+
+
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(schoolsall, aes(x=monstar, y=log(costmon), fill=action_type)) + geom_boxplot()+ facet_wrap(~action_type) + ggtitle("Monthly Outliers") + theme(axis.text.x = element_text(angle=45)) + labs(y="log(Grant $/Month)",x=element_blank())
+```
+
+\section{Fields of research}
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed fields of research") + labs(y=element_blank(),x="Cumulative annual allocation") + geom_point(size=3) + theme(axis.text.x = element_text(angle=60, hjust = 1), panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank(), panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
+```
+
+
+\section{States}
+
+
+```{r, fig.width=15, fig.height=10, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(sumbystate, aes(x=fed_funding_amount, y=reorder(principal_place_state_code, fed_funding_amount), fill = fiscal_year)) + ggtitle("Most financed states") + labs(y=element_blank(),x="Cumulative annual allocation") +
+  geom_point(size=3) + 
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle=60, hjust = 1),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
+```
+
+
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(bigstates, aes(x=principal_place_state_code, y=log(costmon), fill = action_type)) + geom_boxplot() + facet_wrap(~action_type) + guides(colour = guide_legend(override.aes = list(size=12)))+ ggtitle("Most financed states - outliers") + labs(x=element_blank(),y="log(Grant $/Month)")
+```
+
+
+\section{Months}
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) + ggtitle("Highest cumulative months values") +
+  geom_point(size=3) + 
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle=60, hjust = 1),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
+
+```
+
+
+
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+
+ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1) + facet_wrap(~action_type) +geom_vline(aes(xintercept=mean(logcost), na.rm=T), color="red", linetype="dashed", size=1) + ggtitle("Monthly variations") + labs(x="log(Grant $/Month)",y="Density")
+```
+
+
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() + facet_wrap(~action_type)+ ggtitle("Fall variance") + labs(x=element_blank(),y="log(Grant $/Month)")+ theme(axis.text.x = element_text(angle=45))
+
+```
+\section{Recipient}
+
+
+
+```{r, fig.width=15, fig.height=6, echo=FALSE, warning=FALSE, error=FALSE}
+ggplot(sumbyrect, aes(x=fed_funding_amount, y=reorder(recipient_type, fed_funding_amount), fill = fiscal_year)) + ggtitle("Concentrations by types of recipients - cumulative annual") + 
+  geom_point(size=3) + 
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle=60, hjust = 1),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_line(color="grey60", linetype='dashed'))
+
+```
+
+

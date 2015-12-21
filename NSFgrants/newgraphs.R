@@ -36,7 +36,6 @@ ggplot(schoolsall, aes(y=res_duration, x=log(costmon))) + geom_point(aes(color =
 ### Highest cumulative fields
 ggplot(sumbyprog, aes(x=fed_funding_amount, y=reorder(cfda_program_title, fed_funding_amount), fill = fiscal_year)) + 
   geom_point(size=3) + 
-  theme_bw() + 
   theme(axis.text.x = element_text(angle=60, hjust = 1),
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank(),
@@ -81,11 +80,7 @@ ggplot(sumbymon, aes(x=fed_funding_amount, y=mondec, fill = fiscal_year)) +
 ## Months do change
 ggplot(schoolsall, aes(x=log(costmon), fill=mondec)) + geom_density(alpha = 0.1) + facet_wrap(~action_type) +geom_vline(aes(xintercept=mean(logcost), na.rm=T), color="red", linetype="dashed", size=1) 
 ### Density grid - new thingy 
-data(schoolsall, package="lattice")
-qplot(logcost, data=schoolsall, geom=c("density"),
-      facets=mondec~., fill=mondec)
 
-ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() 
 ggplot(schoolsall, aes(x=mondec, y=log(costmon), fill=mondec)) + geom_boxplot() + facet_wrap(~action_type)
 
 
